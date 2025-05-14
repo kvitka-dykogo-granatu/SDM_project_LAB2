@@ -1,0 +1,14 @@
+.DS_Store
+.vscode/
+*.code-workspace
+.AppleDouble
+.LSOverride
+.Trashes
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.json
+.env
+.env.*
+.pdf
