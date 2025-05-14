@@ -3,37 +3,31 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-pub:Approval a rdfs:Class .
-
-pub:Community a rdfs:Class .
+pub:Authors a rdfs:Class ;
+    rdfs:subClassOf pub:Scientist .
 
 pub:Conference a rdfs:Class ;
     rdfs:subClassOf pub:Event .
 
-pub:Event a rdfs:Class .
-
-pub:Guru a rdfs:Class ;
+pub:Conferencechair a rdfs:Class ;
     rdfs:subClassOf pub:Scientist .
 
-pub:Journal a rdfs:Class ;
-    rdfs:subClassOf pub:Event .
+pub:Event a rdfs:Class .
 
-pub:Organization a rdfs:Class .
-
-pub:Potential_good a rdfs:Class ;
+pub:JournalEditor a rdfs:Class ;
     rdfs:subClassOf pub:Scientist .
 
 pub:Publication a rdfs:Class .
 
+pub:RevelantAuthors a rdfs:Class ;
+    rdfs:subClassOf pub:Authors .
+
 pub:Review a rdfs:Class .
 
 pub:Reviewer a rdfs:Class ;
-    rdfs:subClassOf pub:Scientist .
+    rdfs:subClassOf pub:RevelantAuthors .
 
 pub:Scientist a rdfs:Class .
-
-pub:TopPaper a rdfs:Class ;
-    rdfs:subClassOf pub:Publication .
 
 pub:Topic a rdfs:Class .
 
@@ -44,100 +38,56 @@ pub:abstract a rdf:Property ;
     rdfs:domain pub:Publication ;
     rdfs:range xsd:string .
 
-pub:affiliations a rdf:Property ;
-    rdfs:domain pub:Scientist ;
-    rdfs:range pub:Organization .
+pub:assignReviewersCCH a rdf:Property ;
+    rdfs:domain pub:Conferencechair ;
+    rdfs:range pub:Reviewer .
 
-pub:approvalCount a rdf:Property ;
-    rdfs:domain pub:Approval ;
-    rdfs:range xsd:integer .
+pub:assignReviewersJE a rdf:Property ;
+    rdfs:domain pub:JournalEditor ;
+    rdfs:range pub:Reviewer .
 
 pub:cites a rdf:Property ;
     rdfs:domain pub:Publication ;
     rdfs:range pub:Publication .
 
-pub:cityConference a rdf:Property ;
-    rdfs:domain pub:Conference ;
+pub:city a rdf:Property ;
+    rdfs:domain pub:Event ;
     rdfs:range xsd:string .
 
-pub:cityWorkshop a rdf:Property ;
-    rdfs:domain pub:Workshop ;
-    rdfs:range xsd:string .
-
-pub:considers a rdf:Property ;
-    rdfs:domain pub:Approval ;
-    rdfs:range pub:Review .
-
-pub:containsConference a rdf:Property ;
-    rdfs:domain pub:Conference ;
+pub:containsEvent a rdf:Property ;
+    rdfs:domain pub:Event ;
     rdfs:range pub:Publication .
 
 pub:containsJournal a rdf:Property ;
     rdfs:domain pub:Journal ;
     rdfs:range pub:Publication .
 
-pub:containsWorkshop a rdf:Property ;
-    rdfs:domain pub:Workshop ;
-    rdfs:range pub:Publication .
-
-pub:decision a rdf:Property ;
-    rdfs:domain pub:Review ;
-    rdfs:range xsd:string .
-
-pub:description a rdf:Property ;
-    rdfs:domain pub:Review ;
-    rdfs:range xsd:string .
-
 pub:discuss a rdf:Property ;
     rdfs:domain pub:Publication ;
     rdfs:range pub:Topic .
 
-pub:nameCommunity a rdf:Property ;
-    rdfs:domain pub:Community ;
-    rdfs:range xsd:string .
+pub:editionAssignedCCH a rdf:Property ;
+    rdfs:domain pub:JournalEditor ;
+    rdfs:range pub:Journal .
 
-pub:nameOrganization a rdf:Property ;
-    rdfs:domain pub:Organization ;
-    rdfs:range xsd:string .
-
-pub:proceedingIDConference a rdf:Property ;
-    rdfs:domain pub:Conference ;
-    rdfs:range xsd:string .
-
-pub:proceedingIDWorkshop a rdf:Property ;
-    rdfs:domain pub:Workshop ;
-    rdfs:range xsd:string .
-
-pub:publishes a rdf:Property ;
-    rdfs:domain pub:Approval ;
-    rdfs:range pub:Publication .
-
-pub:related a rdf:Property ;
-    rdfs:domain pub:Community ;
+pub:editionAssignedJE a rdf:Property ;
+    rdfs:domain pub:Conferencechair ;
     rdfs:range pub:Event .
+
+pub:name a rdf:Property ;
+    rdfs:domain pub:Scientist ;
+    rdfs:range xsd:string .
+
+pub:proceedingID a rdf:Property ;
+    rdfs:domain pub:Event ;
+    rdfs:range xsd:string .
 
 pub:reviews a rdf:Property ;
     rdfs:domain pub:Reviewer ;
     rdfs:range pub:Publication .
 
-pub:sends a rdf:Property ;
-    rdfs:domain pub:Scientist ;
-    rdfs:range pub:Review .
-
-pub:status a rdf:Property ;
-    rdfs:domain pub:Approval ;
-    rdfs:range xsd:string .
-
 pub:title a rdf:Property ;
     rdfs:domain pub:Publication ;
-    rdfs:range xsd:string .
-
-pub:totalReviewCount a rdf:Property ;
-    rdfs:domain pub:Approval ;
-    rdfs:range xsd:integer .
-
-pub:type a rdf:Property ;
-    rdfs:domain pub:Organization ;
     rdfs:range xsd:string .
 
 pub:volume a rdf:Property ;
@@ -145,18 +95,14 @@ pub:volume a rdf:Property ;
     rdfs:range xsd:string .
 
 pub:writes a rdf:Property ;
-    rdfs:domain pub:Scientist ;
+    rdfs:domain pub:Authors ;
     rdfs:range pub:Publication .
 
-pub:yearConference a rdf:Property ;
-    rdfs:domain pub:Conference ;
+pub:year a rdf:Property ;
+    rdfs:domain pub:Event ;
     rdfs:range xsd:string .
 
 pub:yearJournal a rdf:Property ;
     rdfs:domain pub:Journal ;
-    rdfs:range xsd:string .
-
-pub:yearWorkshop a rdf:Property ;
-    rdfs:domain pub:Workshop ;
     rdfs:range xsd:string .
 
