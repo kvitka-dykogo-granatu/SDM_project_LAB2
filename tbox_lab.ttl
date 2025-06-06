@@ -3,106 +3,75 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-pub:Authors a rdfs:Class ;
-    rdfs:subClassOf pub:Scientist .
-
-pub:Conference a rdfs:Class ;
-    rdfs:subClassOf pub:Event .
-
-pub:Conferencechair a rdfs:Class ;
-    rdfs:subClassOf pub:Scientist .
+pub:Authors a rdfs:Class .
 
 pub:Event a rdfs:Class .
 
-pub:JournalEditor a rdfs:Class ;
-    rdfs:subClassOf pub:Scientist .
-
 pub:Publication a rdfs:Class .
 
-pub:RevelantAuthors a rdfs:Class ;
-    rdfs:subClassOf pub:Authors .
-
 pub:Review a rdfs:Class .
-
-pub:Reviewer a rdfs:Class ;
-    rdfs:subClassOf pub:RevelantAuthors .
 
 pub:Scientist a rdfs:Class .
 
 pub:Topic a rdfs:Class .
 
-pub:Workshop a rdfs:Class ;
-    rdfs:subClassOf pub:Event .
-
-pub:abstract a rdf:Property ;
-    rdfs:domain pub:Publication ;
+pub:Abstract a rdf:Property ;
+    rdfs:domain pub:Paper ;
     rdfs:range xsd:string .
 
-pub:assignReviewersCCH a rdf:Property ;
-    rdfs:domain pub:Conferencechair ;
-    rdfs:range pub:Reviewer .
+pub:Conference rdfs:subClassOf pub:Event .
 
-pub:assignReviewersJE a rdf:Property ;
-    rdfs:domain pub:JournalEditor ;
-    rdfs:range pub:Reviewer .
+pub:Conferencechair rdfs:subClassOf pub:Scientist .
 
-pub:cites a rdf:Property ;
-    rdfs:domain pub:Publication ;
-    rdfs:range pub:Publication .
-
-pub:city a rdf:Property ;
-    rdfs:domain pub:Event ;
-    rdfs:range xsd:string .
-
-pub:containsEvent a rdf:Property ;
-    rdfs:domain pub:Event ;
-    rdfs:range pub:Publication .
-
-pub:containsJournal a rdf:Property ;
-    rdfs:domain pub:Journal ;
-    rdfs:range pub:Publication .
-
-pub:discuss a rdf:Property ;
-    rdfs:domain pub:Publication ;
+pub:Has_topic a rdf:Property ;
+    rdfs:domain pub:Paper ;
     rdfs:range pub:Topic .
 
-pub:editionAssignedCCH a rdf:Property ;
-    rdfs:domain pub:JournalEditor ;
-    rdfs:range pub:Journal .
+pub:JournalEditor rdfs:subClassOf pub:Scientist .
 
-pub:editionAssignedJE a rdf:Property ;
-    rdfs:domain pub:Conferencechair ;
-    rdfs:range pub:Event .
-
-pub:name a rdf:Property ;
-    rdfs:domain pub:Scientist ;
+pub:Title a rdf:Property ;
+    rdfs:domain pub:Paper ;
     rdfs:range xsd:string .
 
-pub:proceedingID a rdf:Property ;
-    rdfs:domain pub:Event ;
-    rdfs:range xsd:string .
+pub:Workshop rdfs:subClassOf pub:Event .
 
-pub:reviews a rdf:Property ;
-    rdfs:domain pub:Reviewer ;
-    rdfs:range pub:Publication .
+pub:belongs_to a rdf:Property ;
+    rdfs:domain pub:Proceeding,
+        pub:Volume ;
+    rdfs:range pub:Event,
+        pub:Journal .
 
-pub:title a rdf:Property ;
+pub:city rdfs:domain pub:Proceeding,
+        pub:Volume ;
+    rdfs:range pub:string .
+
+pub:has_year a rdf:Property .
+
+pub:presented_in a rdf:Property ;
     rdfs:domain pub:Publication ;
-    rdfs:range xsd:string .
+    rdfs:range pub:Proceeding .
 
-pub:volume a rdf:Property ;
-    rdfs:domain pub:Journal ;
-    rdfs:range xsd:string .
+pub:published_in a rdf:Property ;
+    rdfs:domain pub:Publication ;
+    rdfs:range pub:Volume .
 
-pub:writes a rdf:Property ;
-    rdfs:domain pub:Authors ;
-    rdfs:range pub:Publication .
+pub:review a rdf:Property ;
+    rdfs:domain pub:Publication ;
+    rdfs:range pub:Review .
 
-pub:year a rdf:Property ;
-    rdfs:domain pub:Event ;
-    rdfs:range xsd:string .
+pub:reviewedPaper a rdf:Property ;
+    rdfs:domain pub:Review ;
+    rdfs:range pub:Paper .
 
-pub:yearJournal a rdf:Property ;
-    rdfs:domain pub:Journal ;
-    rdfs:range xsd:string .
+pub:reviewer a rdf:Property ;
+    rdfs:domain pub:Review ;
+    rdfs:range pub:Reviewer .
+
+pub:year rdfs:domain pub:Proceeding,
+        pub:Volume ;
+    rdfs:range pub:int .
+
+pub:RevelantAuthors rdfs:subClassOf pub:Authors .
+
+pub:Reviewer rdfs:subClassOf pub:RevelantAuthors .
 
