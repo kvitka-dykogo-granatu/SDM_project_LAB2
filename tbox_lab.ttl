@@ -80,6 +80,10 @@ pub:volumeBelongsToJournal a rdf:Property ;
     rdfs:domain pub:Volume ;
     rdfs:range pub:Journal .
 
+pub:writes a rdf:Property ;
+    rdfs:domain pub:Author ;
+    rdfs:range pub:Publication .
+
 pub:year a rdf:Property ;
     rdfs:domain pub:Proceeding,
         pub:Volume ;
