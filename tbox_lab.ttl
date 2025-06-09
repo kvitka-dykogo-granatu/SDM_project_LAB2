@@ -3,37 +3,38 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-pub:Authors a rdfs:Class .
+pub:Author a rdfs:Class .
+
+pub:ConferenceChair a rdfs:Class ;
+    rdfs:subClassOf pub:Editor .
+
+pub:Editor a rdfs:Class ;
+    rdfs:subClassOf pub:ReviewerBoard .
 
 pub:Event a rdfs:Class .
+
+pub:JournalEditor a rdfs:Class ;
+    rdfs:subClassOf pub:Editor .
 
 pub:Publication a rdfs:Class .
 
 pub:Review a rdfs:Class .
 
-pub:Scientist a rdfs:Class .
+pub:Reviewer a rdfs:Class ;
+    rdfs:subClassOf pub:Author .
+
+pub:ReviewerBoard a rdfs:Class ;
+    rdfs:subClassOf pub:Reviewer .
 
 pub:Topic a rdfs:Class .
 
-pub:Abstract a rdf:Property ;
+pub:abstract a rdf:Property ;
     rdfs:domain pub:Paper ;
     rdfs:range xsd:string .
 
-pub:Conference rdfs:subClassOf pub:Event .
-
-pub:Conferencechair rdfs:subClassOf pub:Scientist .
-
-pub:Has_topic a rdf:Property ;
-    rdfs:domain pub:Paper ;
-    rdfs:range pub:Topic .
-
-pub:JournalEditor rdfs:subClassOf pub:Scientist .
-
-pub:Title a rdf:Property ;
-    rdfs:domain pub:Paper ;
-    rdfs:range xsd:string .
-
-pub:Workshop rdfs:subClassOf pub:Event .
+pub:assignedBy a rdf:Property ;
+    rdfs:domain pub:Review ;
+    rdfs:range pub:Editor .
 
 pub:cites a rdf:Property ;
     rdfs:domain pub:Paper ;
@@ -44,15 +45,27 @@ pub:city a rdf:Property ;
         pub:Volume ;
     rdfs:range xsd:string .
 
-pub:hindex a rdf:Property ;
-    rdfs:domain pub:Author ;
+pub:comment a rdf:Property ;
+    rdfs:domain pub:Review ;
     rdfs:range xsd:string .
+
+pub:decision a rdf:Property ;
+    rdfs:domain pub:Review ;
+    rdfs:range xsd:string .
+
+pub:hIndex a rdf:Property ;
+    rdfs:domain pub:Author ;
+    rdfs:range xsd:int .
+
+pub:hasTopic a rdf:Property ;
+    rdfs:domain pub:Paper ;
+    rdfs:range pub:Topic .
 
 pub:name a rdf:Property ;
     rdfs:domain pub:Author ;
     rdfs:range xsd:string .
 
-pub:presented_in a rdf:Property ;
+pub:presentedIn a rdf:Property ;
     rdfs:domain pub:Publication ;
     rdfs:range pub:Proceeding .
 
@@ -60,21 +73,21 @@ pub:proceedingBelongsToEvent a rdf:Property ;
     rdfs:domain pub:Proceeding ;
     rdfs:range pub:Event .
 
-pub:published_in a rdf:Property ;
+pub:publishedIn a rdf:Property ;
     rdfs:domain pub:Publication ;
     rdfs:range pub:Volume .
-
-pub:review a rdf:Property ;
-    rdfs:domain pub:Publication ;
-    rdfs:range pub:Review .
 
 pub:reviewedPaper a rdf:Property ;
     rdfs:domain pub:Review ;
     rdfs:range pub:Paper .
 
-pub:reviewer a rdf:Property ;
-    rdfs:domain pub:Review ;
-    rdfs:range pub:Reviewer .
+pub:reviews a rdf:Property ;
+    rdfs:domain pub:Reviewer ;
+    rdfs:range pub:Reviewed .
+
+pub:title a rdf:Property ;
+    rdfs:domain pub:Paper ;
+    rdfs:range xsd:string .
 
 pub:volumeBelongsToJournal a rdf:Property ;
     rdfs:domain pub:Volume ;
@@ -82,14 +95,10 @@ pub:volumeBelongsToJournal a rdf:Property ;
 
 pub:writes a rdf:Property ;
     rdfs:domain pub:Author ;
-    rdfs:range pub:Publication .
+    rdfs:range pub:Paper .
 
 pub:year a rdf:Property ;
     rdfs:domain pub:Proceeding,
         pub:Volume ;
     rdfs:range xsd:int .
-
-pub:RevelantAuthors rdfs:subClassOf pub:Authors .
-
-pub:Reviewer rdfs:subClassOf pub:RevelantAuthors .
 
