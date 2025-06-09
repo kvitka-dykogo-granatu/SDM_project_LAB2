@@ -29,7 +29,8 @@ pub:ReviewerBoard a rdfs:Class ;
 pub:Topic a rdfs:Class .
 
 pub:abstract a rdf:Property ;
-    rdfs:domain pub:Paper ;
+    rdfs:domain pub:Paper,
+        pub:Publication ;
     rdfs:range xsd:string .
 
 pub:assignedBy a rdf:Property ;
@@ -58,7 +59,8 @@ pub:hIndex a rdf:Property ;
     rdfs:range xsd:int .
 
 pub:hasTopic a rdf:Property ;
-    rdfs:domain pub:Paper ;
+    rdfs:domain pub:Paper,
+        pub:Publication ;
     rdfs:range pub:Topic .
 
 pub:name a rdf:Property ;
@@ -83,10 +85,12 @@ pub:reviewedPaper a rdf:Property ;
 
 pub:reviews a rdf:Property ;
     rdfs:domain pub:Reviewer ;
-    rdfs:range pub:Reviewed .
+    rdfs:range pub:Publication,
+        pub:Reviewed .
 
 pub:title a rdf:Property ;
-    rdfs:domain pub:Paper ;
+    rdfs:domain pub:Paper,
+        pub:Publication ;
     rdfs:range xsd:string .
 
 pub:volumeBelongsToJournal a rdf:Property ;
@@ -95,7 +99,8 @@ pub:volumeBelongsToJournal a rdf:Property ;
 
 pub:writes a rdf:Property ;
     rdfs:domain pub:Author ;
-    rdfs:range pub:Paper .
+    rdfs:range pub:Paper,
+        pub:Publication .
 
 pub:year a rdf:Property ;
     rdfs:domain pub:Proceeding,
