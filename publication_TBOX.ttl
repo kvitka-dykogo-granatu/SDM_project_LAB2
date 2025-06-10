@@ -1,0 +1,112 @@
+@prefix pub: <http://www.example.org/publication#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+pub:Abstract a rdfs:Class .
+
+pub:Author a rdfs:Class .
+
+pub:City a rdfs:Class .
+
+pub:Conference a rdfs:Class ;
+    rdfs:subClassOf pub:Event .
+
+pub:ConferenceChair a rdfs:Class ;
+    rdfs:subClassOf pub:Editor .
+
+pub:Editor a rdfs:Class ;
+    rdfs:subClassOf pub:Author .
+
+pub:Event a rdfs:Class .
+
+pub:HIndex a rdfs:Class .
+
+pub:Journal a rdfs:Class .
+
+pub:JournalEditor a rdfs:Class ;
+    rdfs:subClassOf pub:Editor .
+
+pub:Keyword a rdfs:Class .
+
+pub:Paper a rdfs:Class .
+
+pub:Proceedings a rdfs:Class .
+
+pub:Reviewer a rdfs:Class ;
+    rdfs:subClassOf pub:Author .
+
+pub:Volume a rdfs:Class .
+
+pub:Workshop a rdfs:Class ;
+    rdfs:subClassOf pub:Event .
+
+pub:Year a rdfs:Class .
+
+pub:assignedBy a rdf:Property ;
+    rdfs:domain pub:Reviewer ;
+    rdfs:range pub:Editor .
+
+pub:belongsTo a rdf:Property ;
+    rdfs:domain pub:Volume ;
+    rdfs:range pub:Journal .
+
+pub:cites a rdf:Property ;
+    rdfs:domain pub:Paper ;
+    rdfs:range pub:Paper .
+
+pub:contains a rdf:Property ;
+    rdfs:domain pub:Paper ;
+    rdfs:range pub:Abstract .
+
+pub:edits a rdf:Property ;
+    rdfs:domain pub:JournalEditor ;
+    rdfs:range pub:Journal .
+
+pub:hasIndex a rdf:Property ;
+    rdfs:domain pub:Author ;
+    rdfs:range pub:HIndex .
+
+pub:isAbout a rdf:Property ;
+    rdfs:domain pub:Paper ;
+    rdfs:range pub:Keyword .
+
+pub:isCorrespondingAuthor a rdf:Property ;
+    rdfs:domain pub:Author ;
+    rdfs:range pub:Paper .
+
+pub:isPartOf a rdf:Property ;
+    rdfs:domain pub:Proceedings ;
+    rdfs:range pub:Event .
+
+pub:ofVenueIn a rdf:Property ;
+    rdfs:domain pub:Proceedings ;
+    rdfs:range pub:City .
+
+pub:presentedIn a rdf:Property ;
+    rdfs:domain pub:Paper ;
+    rdfs:range pub:Proceedings .
+
+pub:presentedInYear a rdf:Property ;
+    rdfs:domain pub:Proceedings ;
+    rdfs:range pub:Year .
+
+pub:publishedIn a rdf:Property ;
+    rdfs:domain pub:Paper ;
+    rdfs:range pub:Volume .
+
+pub:publishedInYear a rdf:Property ;
+    rdfs:domain pub:Volume ;
+    rdfs:range pub:Year .
+
+pub:reviews a rdf:Property ;
+    rdfs:domain pub:Reviewer ;
+    rdfs:range pub:Paper .
+
+pub:runs a rdf:Property ;
+    rdfs:domain pub:ConferenceChair ;
+    rdfs:range pub:Event .
+
+pub:writes a rdf:Property ;
+    rdfs:domain pub:Author ;
+    rdfs:range pub:Paper .
+

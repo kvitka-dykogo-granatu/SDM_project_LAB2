@@ -1,0 +1,25 @@
+@prefix pub: <http://www.example.org/publication#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+pub:PaperShape a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path pub:title ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path pub:isCorrespondingAuthor ] ;
+    sh:targetClass pub:Paper .
+
+pub:ReviewerShape a sh:NodeShape ;
+    sh:sparql [ sh:message "Reviewer is also an author of the same paper." ;
+            sh:select """
+PREFIX pub: <http://www.example.org/publication#>
+SELECT $this WHERE {
+  $this pub:reviews ?p .
+  ?p    pub:writes  $this .
+}
+"""^^sh:SPARQL ] ;
+    sh:targetClass pub:Reviewer .
+
