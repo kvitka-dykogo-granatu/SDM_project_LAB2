@@ -1,12 +1,11 @@
 @prefix pub: <http://www.example.org/publication#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 pub:Abstract a rdfs:Class .
 
 pub:Author a rdfs:Class .
-
-pub:City a rdfs:Class .
 
 pub:Conference a rdfs:Class ;
     rdfs:subClassOf pub:Event .
@@ -18,8 +17,6 @@ pub:Editor a rdfs:Class ;
     rdfs:subClassOf pub:Author .
 
 pub:Event a rdfs:Class .
-
-pub:HIndex a rdfs:Class .
 
 pub:Journal a rdfs:Class .
 
@@ -40,7 +37,9 @@ pub:Volume a rdfs:Class .
 pub:Workshop a rdfs:Class ;
     rdfs:subClassOf pub:Event .
 
-pub:Year a rdfs:Class .
+pub:abstractText a rdf:Property ;
+    rdfs:domain pub:Paper ;
+    rdfs:range xsd:string .
 
 pub:assignedBy a rdf:Property ;
     rdfs:domain pub:Reviewer ;
@@ -50,17 +49,37 @@ pub:belongsTo a rdf:Property ;
     rdfs:domain pub:Volume ;
     rdfs:range pub:Journal .
 
+pub:citationCount a rdf:Property ;
+    rdfs:domain pub:Paper ;
+    rdfs:range xsd:integer .
+
 pub:cites a rdf:Property ;
     rdfs:domain pub:Paper ;
     rdfs:range pub:Paper .
+
+pub:cityLiteral a rdf:Property ;
+    rdfs:domain pub:Proceedings ;
+    rdfs:range xsd:string .
 
 pub:contains a rdf:Property ;
     rdfs:domain pub:Paper ;
     rdfs:range pub:Abstract .
 
+pub:doi a rdf:Property ;
+    rdfs:domain pub:Paper ;
+    rdfs:range xsd:string .
+
 pub:edits a rdf:Property ;
     rdfs:domain pub:JournalEditor ;
     rdfs:range pub:Journal .
+
+pub:email a rdf:Property ;
+    rdfs:domain pub:Author ;
+    rdfs:range xsd:string .
+
+pub:hIndex a rdf:Property ;
+    rdfs:domain pub:Author ;
+    rdfs:range xsd:integer .
 
 pub:hasIndex a rdf:Property ;
     rdfs:domain pub:Author ;
@@ -78,9 +97,17 @@ pub:isPartOf a rdf:Property ;
     rdfs:domain pub:Proceedings ;
     rdfs:range pub:Event .
 
+pub:name a rdf:Property ;
+    rdfs:domain pub:Author ;
+    rdfs:range xsd:string .
+
 pub:ofVenueIn a rdf:Property ;
     rdfs:domain pub:Proceedings ;
     rdfs:range pub:City .
+
+pub:pages a rdf:Property ;
+    rdfs:domain pub:Paper ;
+    rdfs:range xsd:integer .
 
 pub:presentedIn a rdf:Property ;
     rdfs:domain pub:Paper ;
@@ -106,7 +133,23 @@ pub:runs a rdf:Property ;
     rdfs:domain pub:ConferenceChair ;
     rdfs:range pub:Event .
 
+pub:title a rdf:Property ;
+    rdfs:domain pub:Paper ;
+    rdfs:range xsd:string .
+
+pub:url a rdf:Property ;
+    rdfs:domain pub:Paper ;
+    rdfs:range xsd:anyURI .
+
+pub:volumeYear a rdf:Property ;
+    rdfs:domain pub:Volume ;
+    rdfs:range xsd:gYear .
+
 pub:writes a rdf:Property ;
     rdfs:domain pub:Author ;
     rdfs:range pub:Paper .
+
+pub:yearLiteral a rdf:Property ;
+    rdfs:domain pub:Proceedings ;
+    rdfs:range xsd:gYear .
 
